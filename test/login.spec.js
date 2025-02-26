@@ -1,28 +1,38 @@
 import { test, expect } from "@playwright/test";
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config(); // Leser miljøvariabler fra .env-filen
 
-test("User can successfully log in with valid credentials", async ({
-  page,
-}) => {
-  await page.goto("/login");
+test.describe("Login Tests", () => {
+  test("User can successfully log in with valid credentials", async ({
+    page,
+  }) => {
+    await page.goto("/login"); // Bytt til riktig login-URL hvis nødvendig
 
-  await page.fill("input[name='email']", process.env.TEST_USER);
-  await page.fill("input[name='password']", process.env.TEST_PASS);
-  await page.click("button[type='submit']");
+    // Fyll inn login-form
+    await page.fill('input[name="email"]', process.env.TEST_USER_EMAIL);
+    await page.fill('input[name="password"]', process.env.TEST_USER_PASSWORD);
+    await page.click('button[type="submit"]');
 
-  await expect(page.locator("text=Welcome")).toBeVisible();
-});
+    // Bekreft at login er vellykket
+    await expect(page).toHaveURL("/dashboard"); // Bytt til riktig side etter innlogging
+    await expect(page.locator("text=Welcome")).toBeVisible(); // Sjekk at "Welcome" er synlig
+  });
 
-test("User sees an error message with invalid credentials", async ({
-  page,
-}) => {
-  await page.goto("/login");
+  test("User sees an error message with invalid credentials", async ({
+    page,
+  }) => {
+    await page.goto("/login");
 
-  await page.fill("input[name='email']", "wrong@example.com");
-  await page.fill("input[name='password']", "wrongpassword");
-  await page.click("button[type='submit']");
+    // Skriv inn ugyldige login-data
+    await page.fill('input[name="email"]', "wrong@example.com");
+    await page.fill('input[name="password"]', "wrongpassword");
+    await page.click('button[type="submit"]');
 
-  await expect(page.locator("text=Invalid credentials")).toBeVisible();
+    // Sjekk at feilmelding vises
+    await expect(page.locator(".error-message")).toBeVisible();
+    await expect(page.locator(".error-message")).toHaveText(
+      "Invalid credentials",
+    );
+  });
 });
