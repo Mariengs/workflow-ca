@@ -107,7 +107,8 @@ The unit tests are configured with Vitest and test the following functionality:
 Tests that it returns the name from the user object in storage (first save a user object to storage).
 Tests that it returns null when no user exists in storage.
 
-##End-to-End Tests
+## End-to-End Tests
+
 The Playwright tests include the following:
 
 1. Login Test:
