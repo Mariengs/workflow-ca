@@ -1,15 +1,13 @@
 import { defineConfig } from "@playwright/test";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default defineConfig({
   use: {
-    baseURL: "http://127.0.0.1:5500/", // Bytt ut med riktig URL om nødvendig
-    headless: true, // Kjører testene i headless mode
-    viewport: { width: 1280, height: 720 }, // Standard skjermstørrelse for tester
-    ignoreHTTPSErrors: true,
+    baseURL: "http://127.0.0.1:5500/",
+    headless: true,
+    viewport: { width: 1280, height: 720 },
   },
-  webServer: {
-    command: "npm run dev", // Starter utviklingsserveren før testene kjører
-    port: 5173, // Samme port som baseURL
-    reuseExistingServer: !process.env.CI, // Unngå å starte flere servere lokalt
-  },
+  testDir: "test",
 });

@@ -5,5 +5,6 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./test/setup.js",
+    testPathIgnorePatterns: ["./tests/e2e/"],
   },
 });

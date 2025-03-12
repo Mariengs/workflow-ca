@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { getUserName } from "../src/utils.js";
+import { getUsername } from "../js/utils/storage.js";
 
-describe("getUserName", () => {
+describe("getUsername", () => {
   beforeEach(() => {
     localStorage.clear();
   });
@@ -12,10 +12,10 @@ describe("getUserName", () => {
 
   it("returns the name from the user object in storage", () => {
     localStorage.setItem("user", JSON.stringify({ name: "Marianne" }));
-    expect(getUserName()).toBe("Marianne");
+    expect(getUsername()).toBe("Marianne");
   });
 
   it("returns null when no user exists in storage", () => {
-    expect(getUserName()).toBeNull();
+    expect(getUsername()).toBeNull();
   });
 });
