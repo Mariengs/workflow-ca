@@ -9,8 +9,8 @@ test.describe("Login tests", () => {
   }) => {
     await page.goto("/login");
 
-    await page.fill('input[name="email"]', process.env.USER_EMAIL);
-    await page.fill('input[name="password"]', process.env.USER_PASSWORD);
+    await page.fill('input[name="email"]', process.env.TEST_USER_EMAIL);
+    await page.fill('input[name="password"]', process.env.TEST_USER_PASSWORD);
     await page.click('button[type="submit"]');
 
     await expect(page).toHaveURL("/");
