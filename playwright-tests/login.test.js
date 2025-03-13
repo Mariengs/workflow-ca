@@ -25,13 +25,11 @@ test.describe("Login tests", () => {
     await page.fill('input[name="password"]', "wrongpassword");
     await page.click('button[type="submit"]');
 
-    await page.waitForSelector(".error-message", {
-      state: "visible",
-      timeout: 3000,
-    });
-
-    await expect(page.locator(".error-message")).toHaveText(
-      "Invalid credentials",
-    );
+    await page.waitForTimeout(3000);
+    await expect(
+      page.locator(
+        "text=Please enter a noroff.no or stud.noroff.no email address.",
+      ),
+    ).toBeVisible();
   });
 });

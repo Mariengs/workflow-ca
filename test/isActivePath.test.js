@@ -12,7 +12,7 @@ describe("isActivePath", () => {
   });
 
   it("returns true when current path includes the href", () => {
-    expect(isActivePath("/dashboard", "/dashboard/settings")).toBe(true); // Endret rekkefølge
+    expect(isActivePath("/dashboard", "/dashboard/settings")).toBe(true);
   });
 
   it("returns false when paths do not match", () => {
