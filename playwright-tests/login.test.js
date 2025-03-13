@@ -3,8 +3,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-test.setTimeout(120000);
-
 test.describe("Login tests", () => {
   test("User can successfully log in with valid credentials", async ({
     page,
@@ -29,7 +27,7 @@ test.describe("Login tests", () => {
 
     await page.waitForSelector(".error-message", {
       state: "visible",
-      timeout: 90000,
+      timeout: 3000,
     });
 
     await expect(page.locator(".error-message")).toHaveText(

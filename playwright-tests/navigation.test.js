@@ -5,17 +5,10 @@ test("Navigation from home to venue details", async ({ page }) => {
 
   await page.waitForLoadState("load");
 
-  await page.waitForFunction(
-    () => document.querySelectorAll(".venue-list .venue-item").length > 0,
-    { timeout: 120000 },
-  );
+  const firstVenueLink = page.locator("#venue-container a");
 
-  await page.waitForSelector(".venue-list .venue-item:first-child a", {
-    state: "visible",
-    timeout: 120000,
-  });
+  await firstVenueLink.first().click();
 
-  await page.click(".venue-list .venue-item:first-child a");
-
-  await expect(page.locator("h1")).toHaveText(/Venue details/i);
+  const heading = page.locator("h1");
+  await expect(heading).toContainText("Venue details");
 });
