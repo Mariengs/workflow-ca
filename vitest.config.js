@@ -4,7 +4,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: "./test/setup.js",
-    testPathIgnorePatterns: ["./tests/e2e/"],
+    include: ["**/*.test.js", "**/*.spec.js"],
+    exclude: ["**/node_modules/**", "**/playwright-tests/**"],
   },
 });
