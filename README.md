@@ -145,5 +145,3 @@ git checkout -b workflow
 
    4. Open a Pull Request
       Once your changes are pushed, open a Pull Request (PR) from the workflow branch into the main branch.
-
-Do not merge the PR. Instead, request a review from peers and incorporate feedback as necessary.
